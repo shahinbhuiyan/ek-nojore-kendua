@@ -3,191 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>এক নজরে কেন্দুয়া - App</title>
+    <title>এক নজরে কেন্দুয়া - App ডাউনলোড</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Roboto', sans-serif; background-color: #fff; }
-        .google-green { color: #01875f; }
-        .bg-google-green { background-color: #01875f; }
+        body { font-family: 'Roboto', sans-serif; background-color: #fff; scroll-behavior: smooth; }
         
-        /* Professional Video Wrapper (16:9 Aspect Ratio) */
+        /* Primary Color Configuration */
+        :root { --primary-color: #008080; }
+        .text-primary { color: var(--primary-color); }
+        .bg-primary { background-color: var(--primary-color); }
+        .border-primary { border-color: var(--primary-color); }
+
+        .rounded-box {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 ratio */
+            padding-top: 56.25%;
             background-color: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         .video-wrapper video {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
         }
+
+        /* Image Slider */
+        .slider-container { position: relative; width: 100%; height: 400px; }
+        @media (max-width: 768px) { .slider-container { height: 250px; } }
+
+        .slide {
+            position: absolute;
+            inset: 0; opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .slide.active { opacity: 1; z-index: 10; }
+        .slide img { width: 100%; height: 100%; object-fit: contain; background: #f0fdfa; }
+
+        .slider-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            z-index: 20; background: rgba(255,255,255,0.9);
+            padding: 12px 16px; border-radius: 50%; cursor: pointer;
+            color: var(--primary-color); transition: 0.3s;
+        }
+        .slider-btn:hover { background: var(--primary-color); color: white; }
+
+        /* Review Grid */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) { .reviews-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     </style>
 </head>
 <body class="text-gray-800">
 
     <nav class="flex items-center justify-between px-4 md:px-12 py-4 border-b sticky top-0 bg-white z-50">
-        <div class="flex items-center space-x-4">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="Play Store" class="w-7">
-            <span class="text-xl font-semibold text-gray-600">Google Play</span>
+        <div class="flex items-center space-x-3">
+            <div class="bg-primary w-10 h-10 rounded-lg flex items-center justify-center text-white shadow-lg">
+                <i class="fas fa-layer-group text-xl"></i>
+            </div>
+            <span class="text-xl font-bold text-gray-800">App Downloader</span>
         </div>
-        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
-            <a href="#" class="google-green border-b-2 border-green-700 pb-1">Games</a>
-            <a href="#" class="hover:text-green-700">Apps</a>
-            <a href="#" class="hover:text-green-700">Movies</a>
-            <a href="#" class="hover:text-green-700">Books</a>
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+            <a href="#" class="text-primary border-b-2 border-primary pb-1">Home</a>
         </div>
     </nav>
 
     <main class="max-w-4xl mx-auto mt-8 px-4">
         
         <div class="flex flex-col md:flex-row items-center md:items-start space-y-5 md:space-y-0 md:space-x-8">
-            <img src="https://kendua.smmpanelbdlab.com/uploads/img/favicon.png" alt="Ek Nojore Kendua Logo" class="w-28 h-28 md:w-36 md:h-36 rounded-[22%] shadow-md border p-1">
-            
+            <img src="https://i.postimg.cc/26jy4Svr/eknojorekendua.png" alt="Logo" class="w-28 h-28 md:w-36 md:h-36 rounded-[22%] shadow-md border p-1">
             <div class="text-center md:text-left flex-1">
                 <h1 class="text-3xl md:text-4xl font-bold text-gray-900">এক নজরে কেন্দুয়া</h1>
-                <p class="text-green-700 font-medium text-lg mt-1">Shahin Bhuiyan</p>
-                <p class="text-gray-500 text-xs mt-1 uppercase tracking-wider">Contains ads · In-app purchases</p>
+                <p class="text-primary font-semibold text-lg mt-1">Shahin Bhuiyan</p>
                 
-                <div class="flex items-center justify-center md:justify-start mt-6 space-x-10">
+                <div class="flex items-center justify-center md:justify-start mt-6 space-x-8">
                     <div class="text-center">
-                        <span class="font-bold text-sm">4.9 <i class="fas fa-star text-[10px]"></i></span>
-                        <p class="text-[11px] text-gray-500">52 reviews</p>
+                        <span class="font-bold text-sm">4.9 <i class="fas fa-star text-yellow-500"></i></span>
+                        <p class="text-[11px] text-gray-500 uppercase">Ratings</p>
                     </div>
                     <div class="border-l h-8 border-gray-200"></div>
                     <div class="text-center">
-                        <span class="font-bold text-sm">10K+</span>
-                        <p class="text-[11px] text-gray-500">Downloads</p>
+                        <span class="font-bold text-sm">20K+</span>
+                        <p class="text-[11px] text-gray-500 uppercase">Downloads</p>
                     </div>
                     <div class="border-l h-8 border-gray-200"></div>
                     <div class="text-center">
-                        <span class="font-bold text-sm">E</span>
-                        <p class="text-[11px] text-gray-500">Everyone</p>
+                        <span class="font-bold text-sm">8.5 MB</span>
+                        <p class="text-[11px] text-gray-500 uppercase">Size</p>
                     </div>
-                </div>
-
+                </div><br>
+<p>This is the official APK file of Kendua App.</p>
+<p>Download and install manually on Android devices.</p>
                 <div class="mt-8 flex flex-col md:flex-row gap-3">
-                    <a href="https://github.com/shahinbhuiyan/ek-nojore-kendua/raw/refs/heads/main/app/ek_nojore_kendua.apk" class="bg-google-green text-white px-14 py-2.5 rounded-lg font-medium hover:bg-green-800 transition text-center shadow-md">
-                        Install
+                    <a href="https://github.com/shahinbhuiyan/ek-nojore-kendua/raw/refs/heads/main/app/ek_nojore_kendua.apk" class="bg-primary text-white px-14 py-3 rounded-xl font-bold hover:opacity-90 transition text-center shadow-lg flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i> Download APK
                     </a>
-                    <button class="text-green-700 border border-gray-300 px-6 py-2.5 rounded-lg font-medium hover:bg-gray-50 transition">
-                        Add to wishlist
-                    </button>
                 </div>
             </div>
         </div>
 
         <section class="mt-12">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">How to Setup</h3>
-            <div class="video-wrapper">
+            <h3 class="text-lg font-bold mb-4 text-gray-800">ব্যবহার বিধি ভিডিও:</h3>
+            <div class="video-wrapper rounded-box">
                 <video controls poster="https://kendua.smmpanelbdlab.com/uploads/img/favicon.png">
-                    <source src="APNAR_VIDEO_MP4_LINK.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    <source src="YOUR_VIDEO_LINK.mp4" type="video/mp4">
                 </video>
             </div>
         </section>
 
-        <section class="mt-12 border-b border-gray-100 pb-10">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-xl font-semibold">About this app</h2>
-                <i class="fas fa-arrow-right text-gray-400"></i>
-            </div>
-            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
-                কেন্দুয়া উপজেলার সকল প্রয়োজনীয় তথ্য এখন এক অ্যাপেই! জরুরি সেবা, রক্তদান, ইতিহাস এবং স্থানীয় সংবাদ পেতে ডাউনলোড করুন "এক নজরে কেন্দুয়া"। আপনার জীবনকে সহজ করতে আমরা সব সময় পাশে আছি।
-            </p>
-            <div class="mt-6">
-                <p class="text-sm font-semibold text-gray-700">Updated on</p>
-                <p class="text-gray-500 text-sm">March 6, 2026</p>
+        <section class="mt-12">
+            <h3 class="text-lg font-bold mb-4 text-gray-800">অ্যাপ স্ক্রিনশট:</h3>
+            <div class="slider-container rounded-box">
+                <div class="slide active"><img src="https://kendua.smmpanelbdlab.com/uploads/img/favicon.png" alt="Slide 1"></div>
+                <div class="slide"><img src="https://via.placeholder.com/800x450/008080/FFFFFF?text=Emergency+Contact+UI" alt="Slide 2"></div>
+                <div class="slide"><img src="https://via.placeholder.com/800x450/008080/FFFFFF?text=Blood+Donor+List" alt="Slide 3"></div>
+                
+                <div class="slider-btn left-4" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></div>
+                <div class="slider-btn right-4" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></div>
             </div>
         </section>
 
-        <section class="mt-12 mb-28">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-xl font-semibold">Ratings and reviews</h2>
-                <span class="text-google-green font-medium text-sm">See all</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                <div class="space-y-6">
-                    <div class="review">
-                        <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs">S</div>
-                            <span class="text-sm font-medium">Arif</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-[10px] mb-1">
-                            <div class="text-green-700 flex space-x-0.5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <span class="text-gray-400">March 6, 2026</span>
-                        </div>
-                        <p class="text-sm text-gray-600">কেন্দুয়ার সব তথ্য এক সাথে পেয়ে অনেক ভালো লাগলো।</p>
-                    </div>
-
-                    <div class="review">
-                        <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center text-white text-xs">K</div>
-                            <span class="text-sm font-medium">Riya</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-[10px] mb-1">
-                            <div class="text-green-700 flex space-x-0.5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <span class="text-gray-400">March 5, 2026</span>
-                        </div>
-                        <p class="text-sm text-gray-600">খুবই সুন্দর ডিজাইন এবং কাজের অ্যাপ।</p>
-                    </div>
-                    
-                    <div class="review">
-                        <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs">A</div>
-                            <span class="text-sm font-medium">Anwar Hossain</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-[10px] mb-1">
-                            <div class="text-green-700 flex space-x-0.5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <span class="text-gray-400">March 3, 2026</span>
-                        </div>
-                        <p class="text-sm text-gray-600">ব্লাড ডোনার সেকশনটা সবচেয়ে বেশি কাজের।</p>
-                    </div>
+        <section class="mt-16 mb-28">
+            <div class="flex justify-between items-end mb-8 border-b-2 border-gray-50 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">ইউজার রিভিউ ও রেটিং</h2>
+                    <p class="text-gray-500 text-sm">কেন্দুয়ার মানুষের ভালোবাসা</p>
                 </div>
-
-                <div class="space-y-6">
-                    <div class="review">
-                        <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-orange-400 flex items-center justify-center text-white text-xs">R</div>
-                            <span class="text-sm font-medium">Rakib Hasan</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-[10px] mb-1">
-                            <div class="text-green-700 flex space-x-0.5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <span class="text-gray-400">Feb 28, 2026</span>
-                        </div>
-                        <p class="text-sm text-gray-600">অ্যাপটি অনেক ফাস্ট এবং ইউজার ফ্রেন্ডলি।</p>
-                    </div>
-
-                    <div class="review">
-                        <div class="flex items-center space-x-3 mb-2">
-                            <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs">M</div>
-                            <span class="text-sm font-medium">Mitu Akter</span>
-                        </div>
-                        <div class="flex items-center space-x-2 text-[10px] mb-1">
-                            <div class="text-green-700 flex space-x-0.5"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                            <span class="text-gray-400">Feb 25, 2026</span>
-                        </div>
-                        <p class="text-sm text-gray-600">জরুরি সেবার জন্য এটি সেরা মাধ্যম।</p>
-                    </div>
+                <div class="text-right">
+                    <span class="text-3xl font-bold text-primary">4.9</span>
+                    <div class="text-yellow-500 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 </div>
             </div>
-            <p class="mt-8 text-center text-google-green font-medium cursor-pointer">View all 15+ professional reviews</p>
+
+            <div id="reviews-container" class="reviews-grid">
+                </div>
         </section>
     </main>
 
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:hidden flex justify-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)] z-50">
-        <a href="https://github.com/shahinbhuiyan/ek-nojore-kendua/raw/refs/heads/main/app/ek_nojore_kendua.apk" class="bg-google-green text-white w-full py-3 rounded-lg font-bold text-lg text-center">
-            Download Kendua App
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4 md:hidden shadow-2xl z-50">
+        <a href="https://github.com/shahinbhuiyan/ek-nojore-kendua/raw/refs/heads/main/app/ek_nojore_kendua.apk" class="bg-primary text-white w-full py-4 rounded-xl font-bold text-lg text-center block shadow-lg">
+            ডাউনলোড করুন (APK)
         </a>
     </div>
+
+    <script>
+        // Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        function changeSlide(n) { showSlide(currentSlide + n); }
+        setInterval(() => changeSlide(1), 5000);
+
+        // 20+ Reviews Data
+        const reviews = [
+            {name: "Arif Ahmed", text: "কেন্দুয়ার সব দরকারি ফোন নাম্বার এখানে আছে, দারুন!", color: "bg-teal-600"},
+            {name: "Riya Moni", text: "ডিজাইনটা অনেক সুন্দর এবং ফাস্ট।", color: "bg-pink-500"},
+            {name: "Anwar Hossain", text: "ব্লাড ডোনার লিস্টটা অনেক উপকারে আসবে। ধন্যবাদ শাহিন ভাই।", color: "bg-green-600"},
+            {name: "Sajib Khan", text: "আমাদের এলাকার জন্য এমন একটা অ্যাপ দরকার ছিল।", color: "bg-blue-600"},
+            {name: "Mitu Akter", text: "খুবই প্রয়োজনীয় একটি ডিজিটাল উদ্যোগ।", color: "bg-purple-500"},
+            {name: "Rakib", text: "জরুরি মুহূর্তে ডাক্তারদের নাম্বার পাওয়া এখন খুব সহজ।", color: "bg-orange-500"},
+            {name: "Sumon", text: "কেন্দুয়ার ইতিহাস জেনে ভালো লাগলো।", color: "bg-indigo-600"},
+            {name: "Habiba", text: "অ্যাপটি অনেক হেল্পফুল। ৫ স্টার রেটিং দিলাম!", color: "bg-red-400"},
+            {name: "Jasim Uddin", text: "সহজ ইন্টারফেস, যে কেউ ব্যবহার করতে পারবে।", color: "bg-teal-700"},
+            {name: "Nahid", text: "এই প্রথম আমাদের কেন্দুয়ার নিজস্ব কোনো অ্যাপ হলো।", color: "bg-cyan-600"},
+            {name: "Tania", text: "খুবই কম সাইজের অ্যাপ, ফোনে জায়গা কম লাগে।", color: "bg-rose-500"},
+            {name: "Mahfuz", text: "এম্বুলেন্স সার্ভিসের নাম্বারগুলো খুব কাজের।", color: "bg-emerald-600"},
+            {name: "Ibrahim", text: "ভালো অ্যাপ, কিন্তু ডার্ক মোড থাকলে আরও ভালো হতো।", color: "bg-gray-700"},
+            {name: "Kamrul", text: "লোকাল খবরের আপডেট ফিচারটা দারুণ।", color: "bg-amber-600"},
+            {name: "Sharmin", text: "শিক্ষকদের সাথে যোগাযোগের জন্য সেরা মাধ্যম।", color: "bg-fuchsia-600"},
+            {name: "Opu", text: "কেন্দুয়ার যুব সমাজের জন্য এটি বড় প্রাপ্তি।", color: "bg-sky-500"},
+            {name: "Zahid", text: "প্রতিটি উপজেলার এমন অ্যাপ থাকা উচিত।", color: "bg-lime-600"},
+            {name: "Nitu", text: "সুন্দর এবং কার্যকর অ্যাপ।", color: "bg-violet-500"},
+            {name: "Fahim", text: "সহজেই রক্তদাতা খুঁজে পাওয়া যাচ্ছে।", color: "bg-yellow-600"},
+            {name: "Sonia", text: "অসাধারণ কাজ! আরও আপডেট আশা করছি।", color: "bg-blue-700"},
+            {name: "Babul", text: "ইউজার এক্সপেরিয়েন্স অনেক স্মুথ।", color: "bg-slate-600"},
+            {name: "Tushar", text: "অসাধারণ শাহিন ভাই, এগিয়ে যান!", color: "bg-teal-500"}
+        ];
+
+        const container = document.getElementById('reviews-container');
+        reviews.forEach(r => {
+            const div = document.createElement('div');
+            div.className = "bg-gray-50 p-5 rounded-xl border border-gray-100";
+            div.innerHTML = `
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="w-10 h-10 rounded-full ${r.color} flex items-center justify-center text-white font-bold text-sm">${r.name[0]}</div>
+                    <div>
+                        <h4 class="text-sm font-bold text-gray-800">${r.name}</h4>
+                        <div class="flex text-yellow-500 text-[10px]">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed">${r.text}</p>
+            `;
+            container.appendChild(div);
+        });
+    </script>
 
 </body>
 </html>
